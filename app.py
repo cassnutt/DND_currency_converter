@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[6]:
+# In[12]:
 
 
 import streamlit as st
 import numpy as np
 import pprint
+import pandas as pd
 
 import matplotlib.pyplot as plt
 
@@ -22,7 +23,7 @@ st.write('''
 Please type the number of coins you have for each coin type''')
 
 
-# In[ ]:
+# In[13]:
 
 
 # Function to convert 
@@ -71,8 +72,7 @@ while True:
         userNumGold = st.number_input('Enter number of Gold: ', min_value= 0, max_value= 99999999)
         userNumPlatinum = st.number_input('Enter number of Platinum: ', min_value= 0, max_value= 999999)
 
-    except ValueError as e:
-        e == 0
+    except ValueError:
         continue
     
     break
@@ -83,17 +83,18 @@ while True:
 
 # tell user how much they have in gold pieces
 
-st.title('''Total Coins in Gold Pieces''')
+# st.write('''Total Coins in Gold Pieces''')
 totalGold = (userNumCopper * copper) + (userNumSilver * silver) + (userNumElectrum * electrum) +     (userNumGold) + (userNumPlatinum * platinum)
 totalGold = round(totalGold)
 
-st.write(f'You have {totalGold} gold pieces.')
+st.subheader(f'You have {totalGold} gold pieces.')
 
 
 # In[ ]:
 
 
 # ask how much they are trying to spend
+st.title('''Gold you would like to spend''')
 userSpendGold = st.number_input('How much gold do you want to spend? ', min_value= 0, max_value= 9999999999)
 
 
@@ -102,7 +103,8 @@ userSpendGold = st.number_input('How much gold do you want to spend? ', min_valu
 
 if userSpendGold > totalGold:
     st.write('You do not have enough money. Sorry!')
-    st.write(f'Total Gold: {totalGold} \t Gold you need: {userSpendGold}')
+    st.write(f'Total Gold: {totalGold}')
+    st.write(f'Gold you need: {userSpendGold}')
     
 else:
     coins = [
@@ -115,7 +117,12 @@ else:
     
     
     result = getCoins(coins, userSpendGold)
-    st.write(result)
+
+
+# In[11]:
+
+
+df = pd.DataFrame(result)
 
 
 # In[ ]:
@@ -127,7 +134,20 @@ else:
 # In[ ]:
 
 
+df = df.set_index('Coin Name')
+st.table(df)
 
+# In[ ]:
+# st.bar_chart(df)
+
+placeholder = st.empty()
+if st.checkbox('Show Chart'):
+    placeholder.bar_chart(df)
+
+# st.subheader(f'Coin Breakdown for {userSpendGold} gold pieces')
+# st.write(df)
+# #Bar Chart
+# st.bar_chart(df['Coin Name'])
 
 
 # In[ ]:
