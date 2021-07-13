@@ -128,13 +128,89 @@ df = pd.DataFrame(result)
 # In[ ]:
 
 
-df = df.set_index('Coin Name')
+# df2 = df.set_index('Coin Name')
 
 
 # In[ ]:
 
 
 st.table(df)
+
+
+# In[ ]:
+
+
+# text = st.empty()
+# value = "default value"
+# if st.button('reset textarea'):
+#     value = "new value"
+
+# or
+
+placeholder = st.empty()
+
+iput = placeholder.text_input('text')
+click_clear = st.button('clear text input', key=1)
+if click_clear:
+    inpt = placeholder.text_input('text', value='', key=1)
+
+
+# In[ ]:
+
+
+# text = st.empty()
+# value = "default value"
+# if st.button('reset textarea'):
+#     value = "new value"
+
+# or
+
+click_clear = st.button('Restart Calculations')
+if click_clear:
+    inpt = placeholder.text_input('text', value='', key=1)
+
+
+# In[ ]:
+
+
+# # plot on matplotlib
+# def plot_results(data, x, y):
+#     # set variables
+#     x = data[x]
+#     y = data[y]
+#     colors = ['#CDC8C1', '#F0BE60', '#AB7E43','#D68505', '#7D7C64'] # set colors
+#     fig, ax = plt.subplots(figsize=(10, 6))
+    
+#     # input variables into horizontal bar chart
+#     ax.barh(y,x, color = colors)
+#     ax.set_xlabel('Number of Coins')
+#     ax.set_ylabel('Coin Type')
+#     ax.set_title(f'Coins You Need for {userSpendGold} Gold', fontsize= 15);
+    
+#     #plot on streamlit
+#     st.pyplot(fig)
+# plot_results(df, 'Amount', 'Coin Name')
+
+
+# In[ ]:
+
+
+# plot on matplotlib
+
+    # set variables
+x = df['Amount']
+y = df['Coin Name']
+colors = ['#CDC8C1', '#F0BE60', '#D68505', '#7D7C64', '#AB7E43'] # set colors
+fig, ax = plt.subplots(figsize=(10, 6))
+    
+    # input variables into horizontal bar chart
+ax.barh(y,x, color = colors)
+ax.set_xlabel('Number of Coins')
+ax.set_ylabel('Coin Type')
+ax.set_title(f'Coins You Need for {userSpendGold} Gold', fontsize= 15);
+    
+    #plot on streamlit
+#     st.pyplot(fig)
 
 
 # In[ ]:
@@ -148,7 +224,8 @@ st.table(df)
 
 placeholder = st.empty()
 if st.checkbox('Show Chart'):
-    placeholder.bar_chart(df)
+#     placeholder.bar_chart(df)
+    placeholder.pyplot(fig)
 
 
 # In[ ]:
