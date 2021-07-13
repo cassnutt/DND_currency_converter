@@ -128,26 +128,42 @@ df = pd.DataFrame(result)
 # In[ ]:
 
 
-
+df = df.set_index('Coin Name')
 
 
 # In[ ]:
 
 
-df = df.set_index('Coin Name')
 st.table(df)
 
+
 # In[ ]:
+
+
 # st.bar_chart(df)
+
+
+# In[ ]:
+
 
 placeholder = st.empty()
 if st.checkbox('Show Chart'):
     placeholder.bar_chart(df)
 
+
+# In[ ]:
+
+
 # st.subheader(f'Coin Breakdown for {userSpendGold} gold pieces')
 # st.write(df)
 # #Bar Chart
 # st.bar_chart(df['Coin Name'])
+
+
+# In[ ]:
+
+
+# terminal 
 
 
 # In[ ]:
