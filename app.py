@@ -87,7 +87,7 @@ while True:
 totalGold = (userNumCopper * copper) + (userNumSilver * silver) + (userNumElectrum * electrum) +     (userNumGold) + (userNumPlatinum * platinum)
 totalGold = round(totalGold)
 
-st.subheader(f'You have {totalGold} gold pieces.')
+st.subheader(f'You have {totalGold:,d} gold pieces.')
 
 
 # In[ ]:
@@ -95,7 +95,7 @@ st.subheader(f'You have {totalGold} gold pieces.')
 
 # ask how much they are trying to spend
 st.title('''Gold you would like to spend''')
-userSpendGold = st.number_input('How much gold do you want to spend? ', min_value= 0, max_value= 9999999999)
+userSpendGold = st.number_input('How much gold do you want to spend? ', min_value= 0, value= 0)
 
 
 # In[ ]:
@@ -167,7 +167,7 @@ st.table(df)
 
 click_clear = st.button('Start Again')
 if click_clear:
-    st.write('Hello There')
+    st.write('The values have been reset')
 # click_clear = st.button('Restart Calculations')
 # if click_clear:
 #     restart = userSpendGold('', value= 0)
@@ -176,23 +176,37 @@ if click_clear:
 # In[ ]:
 
 
-# # plot on matplotlib
-# def plot_results(data, x, y):
-#     # set variables
-#     x = data[x]
-#     y = data[y]
-#     colors = ['#CDC8C1', '#F0BE60', '#AB7E43','#D68505', '#7D7C64'] # set colors
-#     fig, ax = plt.subplots(figsize=(10, 6))
+# Work on next:
+
+# - getting values to reset when clicking button 
+#     -- use placeholder and st.empty
     
-#     # input variables into horizontal bar chart
-#     ax.barh(y,x, color = colors)
-#     ax.set_xlabel('Number of Coins')
-#     ax.set_ylabel('Coin Type')
-#     ax.set_title(f'Coins You Need for {userSpendGold} Gold', fontsize= 15);
-    
-#     #plot on streamlit
-#     st.pyplot(fig)
-# plot_results(df, 'Amount', 'Coin Name')
+# - get chart to work with empty values, no values in df until user inputs them
+#     -- create an empty dataframe? or try / except to get rid of error?
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
