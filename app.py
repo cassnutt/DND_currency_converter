@@ -66,11 +66,11 @@ def getCoins(coins, amount, coinIndex = 0):
 # # have user input the amount they have for each coin
 while True:
     try: 
-        userNumCopper = st.number_input('Enter number of Copper: ', min_value= 0, max_value= 99999999)
-        userNumSilver = st.number_input('Enter number of Silver: ', min_value= 0, max_value= 99999999)
-        userNumElectrum = st.number_input('Enter number of Electrum: ', min_value= 0, max_value= 99999999)
-        userNumGold = st.number_input('Enter number of Gold: ', min_value= 0, max_value= 99999999)
-        userNumPlatinum = st.number_input('Enter number of Platinum: ', min_value= 0, max_value= 999999)
+        userNumCopper = st.number_input('Enter number of Copper: ', min_value= 0, value= 0)
+        userNumSilver = st.number_input('Enter number of Silver: ', min_value= 0, value= 0)
+        userNumElectrum = st.number_input('Enter number of Electrum: ', min_value= 0, value= 0)
+        userNumGold = st.number_input('Enter number of Gold: ', min_value= 0, value= 0)
+        userNumPlatinum = st.number_input('Enter number of Platinum: ', min_value= 0, value= 0)
 
     except ValueError:
         continue
@@ -119,16 +119,16 @@ else:
     result = getCoins(coins, userSpendGold)
 
 
+# In[ ]:
+
+
+
+
+
 # In[11]:
 
 
 df = pd.DataFrame(result)
-
-
-# In[ ]:
-
-
-# df2 = df.set_index('Coin Name')
 
 
 # In[ ]:
@@ -147,12 +147,12 @@ st.table(df)
 
 # or
 
-placeholder = st.empty()
+# placeholder = st.empty()
 
-iput = placeholder.text_input('text')
-click_clear = st.button('clear text input', key=1)
-if click_clear:
-    inpt = placeholder.text_input('text', value='', key=1)
+# iput = placeholder.text_input('text')
+# click_clear = st.button('clear text input', key=1)
+# if click_clear:
+#     inpt = placeholder.text_input('text', value='', key=1)
 
 
 # In[ ]:
@@ -165,9 +165,12 @@ if click_clear:
 
 # or
 
-click_clear = st.button('Restart Calculations')
+click_clear = st.button('Start Again')
 if click_clear:
-    inpt = placeholder.text_input('text', value='', key=1)
+    st.write('Hello There')
+# click_clear = st.button('Restart Calculations')
+# if click_clear:
+#     restart = userSpendGold('', value= 0)
 
 
 # In[ ]:
@@ -195,46 +198,39 @@ if click_clear:
 # In[ ]:
 
 
-# plot on matplotlib
+# possible solutions?
+# st.write(KeyError)
+
+# change to plt to plotly chart - st.plotly_chart()
+
+# title / header / subheader
+
+
+# In[ ]:
+
+
+# plot with matplotlib
 
     # set variables
-x = df['Amount']
-y = df['Coin Name']
-colors = ['#CDC8C1', '#F0BE60', '#D68505', '#7D7C64', '#AB7E43'] # set colors
-fig, ax = plt.subplots(figsize=(10, 6))
-    
-    # input variables into horizontal bar chart
-ax.barh(y,x, color = colors)
-ax.set_xlabel('Number of Coins')
-ax.set_ylabel('Coin Type')
-ax.set_title(f'Coins You Need for {userSpendGold} Gold', fontsize= 15);
-    
-    #plot on streamlit
-#     st.pyplot(fig)
+# x = df['Amount'] or 0
+# y = df['Coin Name'] or 0
+# colors = ['#CDC8C1', '#7D7C64', '#D68505', '#F0BE60', '#AB7E43'] # set colors
+# fig, ax = plt.subplots(figsize=(10, 6))
+
+#         # input variables into horizontal bar chart
+# ax.barh(y,x, color = colors)
+# ax.set_xlabel('Number of Coins')
+# ax.set_ylabel('Coin Type')
+# ax.set_title(f'Coins You Need for {userSpendGold} Gold', fontsize= 15);
 
 
 # In[ ]:
 
 
-# st.bar_chart(df)
-
-
-# In[ ]:
-
-
-placeholder = st.empty()
-if st.checkbox('Show Chart'):
-#     placeholder.bar_chart(df)
-    placeholder.pyplot(fig)
-
-
-# In[ ]:
-
-
-# st.subheader(f'Coin Breakdown for {userSpendGold} gold pieces')
-# st.write(df)
-# #Bar Chart
-# st.bar_chart(df['Coin Name'])
+# placeholder = st.empty()
+# if st.checkbox('Show Chart'):
+# #     placeholder.bar_chart(df)
+#     placeholder.pyplot(fig)
 
 
 # In[ ]:
