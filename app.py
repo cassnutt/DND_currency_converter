@@ -9,8 +9,6 @@ import numpy as np
 import pprint
 import pandas as pd
 
-import matplotlib.pyplot as plt
-
 
 # In[7]:
 
@@ -214,6 +212,7 @@ if click_clear:
 
 # possible solutions?
 # st.write(KeyError)
+# st.write(function())
 
 # change to plt to plotly chart - st.plotly_chart()
 
