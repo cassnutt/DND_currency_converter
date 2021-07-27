@@ -9,6 +9,8 @@ import numpy as np
 import pprint
 import pandas as pd
 
+df = pd.DataFrame()
+
 
 # In[7]:
 
@@ -72,14 +74,14 @@ placeholder_p = st.empty()
 # In[9]:
 
 
-# # have user input the amount they have for each coin
+# have user input the amount they have for each coin
 while True:
     try: 
-        userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0, value= 0, key= 1)
-        userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0, value= 0)
-        userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0, value= 0)
-        userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0, value= 0)
-        userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0, value= 0)
+        userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0, value= 0)
+        userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0)
+        userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0)
+        userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0)
+        userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0)
 
     except ValueError:
         continue
@@ -90,7 +92,7 @@ while True:
 # In[9]:
 
 
-# # have user input the amount they have for each coin
+# have user input the amount they have for each coin
 # while True:
 #     try: 
 #         userNumCopper = st.number_input('Enter number of Copper: ', min_value= 0, value= 0)
@@ -120,6 +122,12 @@ st.subheader(f'You have {totalGold:,d} gold pieces.')
 # In[ ]:
 
 
+st.markdown('#')
+
+
+# In[ ]:
+
+
 # ask how much they are trying to spend
 st.title('''Gold you would like to spend''')
 userSpendGold = st.number_input('How much gold do you want to spend? ', min_value= 0, value= 0)
@@ -144,24 +152,23 @@ else:
     
     
     result = getCoins(coins, userSpendGold)
+    df = pd.DataFrame(result)
 
 
 # In[ ]:
 
 
+# show table after data is entered
+table_placeholder = st.empty()
 
-
-
-# In[11]:
-
-
-df = pd.DataFrame(result)
+if not df.empty:
+    table_placeholder.table(df)
 
 
 # In[ ]:
 
 
-st.table(df)
+# st.table(df)
 
 
 # In[ ]:
@@ -194,9 +201,14 @@ st.table(df)
 
 click_clear = st.button('Start Again')
 if click_clear:
-    userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0, value= 0, key = 14)
+    getUserInput()
+#     userNumSilver.empty()
+#     userNumElectrum.empty()
+#     userNumGold.empty()
+#     userNumPlatinum.empty()
 
     st.write('The values have been reset')
+    st.balloons()
 # click_clear = st.button('Restart Calculations')
 # if click_clear:
 #     restart = userSpendGold('', value= 0)
@@ -209,9 +221,6 @@ if click_clear:
 
 # - getting values to reset when clicking button 
 #     -- use placeholder and st.empty
-    
-# - get chart to work with empty values, no values in df until user inputs them
-#     -- create an empty dataframe? or try / except to get rid of error?
 
 
 # In[ ]:
