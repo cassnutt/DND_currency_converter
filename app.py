@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[12]:
+# In[1]:
 
 
 import streamlit as st
@@ -18,7 +18,7 @@ Dungeons & Dragons Currency Converter
 ''')
 
 st.write('''
-Please type the number of coins you have for each coin type''')
+Please input the number of coins you have for each coin type''')
 
 
 # In[13]:
@@ -58,22 +58,51 @@ def getCoins(coins, amount, coinIndex = 0):
             return change
 
 
+# In[ ]:
+
+
+# create placeholders to clear inputs when clicking "start over" button
+placeholder_c = st.empty()
+placeholder_s = st.empty()
+placeholder_e = st.empty()
+placeholder_g = st.empty()
+placeholder_p = st.empty()
+
+
 # In[9]:
 
 
 # # have user input the amount they have for each coin
 while True:
     try: 
-        userNumCopper = st.number_input('Enter number of Copper: ', min_value= 0, value= 0)
-        userNumSilver = st.number_input('Enter number of Silver: ', min_value= 0, value= 0)
-        userNumElectrum = st.number_input('Enter number of Electrum: ', min_value= 0, value= 0)
-        userNumGold = st.number_input('Enter number of Gold: ', min_value= 0, value= 0)
-        userNumPlatinum = st.number_input('Enter number of Platinum: ', min_value= 0, value= 0)
+        userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0, value= 0, key= 1)
+        userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0, value= 0)
+        userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0, value= 0)
+        userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0, value= 0)
+        userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0, value= 0)
 
     except ValueError:
         continue
     
     break
+
+
+# In[9]:
+
+
+# # have user input the amount they have for each coin
+# while True:
+#     try: 
+#         userNumCopper = st.number_input('Enter number of Copper: ', min_value= 0, value= 0)
+#         userNumSilver = st.number_input('Enter number of Silver: ', min_value= 0, value= 0)
+#         userNumElectrum = st.number_input('Enter number of Electrum: ', min_value= 0, value= 0)
+#         userNumGold = st.number_input('Enter number of Gold: ', min_value= 0, value= 0)
+#         userNumPlatinum = st.number_input('Enter number of Platinum: ', min_value= 0, value= 0)
+
+#     except ValueError:
+#         continue
+    
+#     break
 
 
 # In[ ]:
@@ -165,6 +194,8 @@ st.table(df)
 
 click_clear = st.button('Start Again')
 if click_clear:
+    userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0, value= 0, key = 14)
+
     st.write('The values have been reset')
 # click_clear = st.button('Restart Calculations')
 # if click_clear:
