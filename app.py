@@ -9,16 +9,24 @@ import numpy as np
 import pprint
 import pandas as pd
 
+# empty dataframe hidden until user inputs data
 df = pd.DataFrame()
 
 
 # In[7]:
 
 
-st.title('''
-Dungeons & Dragons Currency Converter
-''')
+st.title('Dungeons & Dragons Currency Converter')
 
+st.image('images/DND.jpeg', use_column_width= True)
+
+# create columns to right align photo source text
+col1, col2, col3 = st.beta_columns([1,1,.5])
+click_clear = col3.write('[Photo Source](https://www.polygon.com/deals/21294556/dnd-how-to-play-dungeons-dragons-5e-guide-spells-dice-character-sheets-dm)')
+
+
+# add some space between photo and instructions
+st.markdown('#')
 st.write('''
 Please input the number of coins you have for each coin type''')
 
@@ -63,19 +71,6 @@ def getCoins(coins, amount, coinIndex = 0):
 # In[ ]:
 
 
-# have user input the amount they have for each coin
-def getUserInput():
-    userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0, value= 0)
-    userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0)
-    userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0)
-    userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0)
-    userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0)
-    return userNumCopper, userNumSilver, userNumElectrum, userNumGold, userNumPlatinum
-
-
-# In[ ]:
-
-
 # create placeholders to clear inputs when clicking "start over" button
 placeholder_c = st.empty()
 placeholder_s = st.empty()
@@ -83,56 +78,23 @@ placeholder_e = st.empty()
 placeholder_g = st.empty()
 placeholder_p = st.empty()
 
-getUserInput()
-
 
 # In[9]:
 
 
 # have user input the amount they have for each coin
-# while True:
-#     try: 
-#         userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0, value= 0)
-#         userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0)
-#         userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0)
-#         userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0)
-#         userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0)
+while True:
+    try: 
+        userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0)
+        userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0)
+        userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0)
+        userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0)
+        userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0)
 
-#     except ValueError:
-#         continue
+    except ValueError:
+        continue
     
-#     break
-
-
-# In[9]:
-
-
-# # have user input the amount they have for each coin
-# def getUserInput():
-#     userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0, value= 0)
-#     userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0)
-#     userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0)
-#     userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0)
-#     userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0)
-#     return userNumCopper, userNumSilver, userNumElectrum, userNumGold, userNumPlatinum
-
-
-# In[9]:
-
-
-# have user input the amount they have for each coin
-# while True:
-#     try: 
-#         userNumCopper = st.number_input('Enter number of Copper: ', min_value= 0, value= 0)
-#         userNumSilver = st.number_input('Enter number of Silver: ', min_value= 0, value= 0)
-#         userNumElectrum = st.number_input('Enter number of Electrum: ', min_value= 0, value= 0)
-#         userNumGold = st.number_input('Enter number of Gold: ', min_value= 0, value= 0)
-#         userNumPlatinum = st.number_input('Enter number of Platinum: ', min_value= 0, value= 0)
-
-#     except ValueError:
-#         continue
-    
-#     break
+    break
 
 
 # In[ ]:
@@ -158,7 +120,8 @@ st.markdown('#')
 
 # ask how much they are trying to spend
 st.title('''Gold you would like to spend''')
-userSpendGold = st.number_input('How much gold do you want to spend? ', min_value= 0, value= 0)
+placeholder_u = st.empty()
+userSpendGold = placeholder_u.number_input('How much gold do you want to spend? ', min_value= 0, value= 0)
 
 
 # In[ ]:
@@ -196,133 +159,43 @@ if not df.empty:
 # In[ ]:
 
 
-# st.table(df)
+# create dividing line to separate calculations from reset
+st.write('-------------------------')
 
 
 # In[ ]:
 
 
-# text = st.empty()
-# value = "default value"
-# if st.button('reset textarea'):
-#     value = "new value"
+# create columns to right align restart button
+col1, col2, col3 = st.beta_columns([1,1,.5])
+click_clear = col3.button('Start Again')
 
-# or
-
-# placeholder = st.empty()
-
-# iput = placeholder.text_input('text')
-# click_clear = st.button('clear text input', key=1)
-# if click_clear:
-#     inpt = placeholder.text_input('text', value='', key=1)
-
-
-# In[ ]:
-
-
-# text = st.empty()
-# value = "default value"
-# if st.button('reset textarea'):
-#     value = "new value"
-
-# or
-
-click_clear = st.button('Start Again')
+# set fields back to 0 when clicking button
 if click_clear:
-    placeholder_c.empty()
-#     userNumSilver.empty()
-#     userNumElectrum.empty()
-#     userNumGold.empty()
-#     userNumPlatinum.empty()
+
+    userNumCopper = placeholder_c.number_input('Enter number of Copper: ', 
+                                               min_value= 0, value= 0, key= 'redo')
+    userNumSilver = placeholder_s.number_input('Enter number of Silver: ', 
+                                               min_value= 0, value= 0, key= 'redo1')
+    userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', 
+                                                 min_value= 0, value= 0, key= 'redo2')
+    userNumGold = placeholder_g.number_input('Enter number of Gold: ', 
+                                             min_value= 0, value= 0, key= 'redo3')
+    userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', 
+                                                 min_value= 0, value= 0, key= 'redo4')
+    userSpendGold = placeholder_u.number_input('How much gold do you want to spend? ', 
+                                               min_value= 0, value= 0, key= 'redo5')
+
+
 
     st.write('The values have been reset')
     st.balloons()
-# click_clear = st.button('Restart Calculations')
-# if click_clear:
-#     restart = userSpendGold('', value= 0)
-
-
-# In[ ]:
-
-
-# Work on next:
-
-# - getting values to reset when clicking button 
-#     -- use placeholder and st.empty
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-# possible solutions?
-# st.write(KeyError)
-# st.write(function())
-
-# change to plt to plotly chart - st.plotly_chart()
-
-# title / header / subheader
-
-
-# In[ ]:
-
-
-# plot with matplotlib
-
-    # set variables
-# x = df['Amount'] or 0
-# y = df['Coin Name'] or 0
-# colors = ['#CDC8C1', '#7D7C64', '#D68505', '#F0BE60', '#AB7E43'] # set colors
-# fig, ax = plt.subplots(figsize=(10, 6))
-
-#         # input variables into horizontal bar chart
-# ax.barh(y,x, color = colors)
-# ax.set_xlabel('Number of Coins')
-# ax.set_ylabel('Coin Type')
-# ax.set_title(f'Coins You Need for {userSpendGold} Gold', fontsize= 15);
-
-
-# In[ ]:
-
-
-# placeholder = st.empty()
-# if st.checkbox('Show Chart'):
-# #     placeholder.bar_chart(df)
-#     placeholder.pyplot(fig)
 
 
 # In[ ]:
 
 
 # terminal 
-
-
-# In[ ]:
-
-
 # jupyter nbconvert   --to script Streamlit_code.ipynb
 # streamlit run app.py
 
