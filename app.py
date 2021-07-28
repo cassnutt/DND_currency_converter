@@ -137,6 +137,8 @@ else:
     
     result = getCoins(coins, userSpendGold)
     df = pd.DataFrame(result)
+    # don't show index numbers?
+#     df.index = [''] * len(df)
 
 
 # In[ ]:
