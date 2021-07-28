@@ -17,6 +17,7 @@ df = pd.DataFrame()
 
 
 st.title('Dungeons & Dragons Currency Converter')
+st.write('')
 
 st.image('images/DND.jpeg', use_column_width= True)
 
@@ -82,19 +83,31 @@ placeholder_p = st.empty()
 # In[9]:
 
 
-# have user input the amount they have for each coin
-while True:
-    try: 
-        userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0)
-        userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0)
-        userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0)
-        userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0)
-        userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0)
+# # have user input the amount they have for each coin
+# while True:
+#     try: 
+#         userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0)
+#         userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0)
+#         userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0)
+#         userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0)
+#         userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0)
 
-    except ValueError:
-        continue
+#     except ValueError:
+#         continue
     
-    break
+#     break
+
+
+# In[9]:
+
+
+# have user input the amount they have for each coin
+
+userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0)
+userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0)
+userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0)
+userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0)
+userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0)
 
 
 # In[ ]:
@@ -112,14 +125,14 @@ st.subheader(f'You have {totalGold:,d} gold pieces.')
 # In[ ]:
 
 
-st.markdown('#')
+st.write('')
 
 
 # In[ ]:
 
 
 # ask how much they are trying to spend
-st.title('''Gold you would like to spend''')
+st.header('''Gold you would like to spend''')
 placeholder_u = st.empty()
 userSpendGold = placeholder_u.number_input('How much gold do you want to spend? ', min_value= 0, value= 0)
 
