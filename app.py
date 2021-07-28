@@ -16,7 +16,7 @@ df = pd.DataFrame()
 # In[7]:
 
 
-st.markdown('# Dungeons & Dragons Currency Converter')
+st.title('Dungeons & Dragons Currency Converter')
 st.write('')
 
 st.image('images/DND.jpeg', use_column_width= True)
@@ -30,6 +30,35 @@ click_clear = col3.write('[Photo Source](https://www.polygon.com/deals/21294556/
 st.markdown('#')
 st.write('''
 Please input the number of coins you have for each coin type''')
+
+
+# In[ ]:
+
+
+# create columns to right align restart button
+col1, col2, col3 = st.beta_columns([1,1,.5])
+click_clear = col3.button('Start Again')
+
+# set fields back to 0 when clicking button
+if click_clear:
+
+    userNumCopper = placeholder_c.number_input('Enter number of Copper: ', 
+                                               min_value= 0, value= 0, key= 'redo')
+    userNumSilver = placeholder_s.number_input('Enter number of Silver: ', 
+                                               min_value= 0, value= 0, key= 'redo1')
+    userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', 
+                                                 min_value= 0, value= 0, key= 'redo2')
+    userNumGold = placeholder_g.number_input('Enter number of Gold: ', 
+                                             min_value= 0, value= 0, key= 'redo3')
+    userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', 
+                                                 min_value= 0, value= 0, key= 'redo4')
+    userSpendGold = placeholder_u.number_input('How much gold do you want to spend? ', 
+                                               min_value= 0, value= 0, key= 'redo5')
+
+
+
+    col3.write('The values have been reset')
+    st.balloons()
 
 
 # In[13]:
@@ -119,7 +148,7 @@ userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_v
 totalGold = (userNumCopper * copper) + (userNumSilver * silver) + (userNumElectrum * electrum) +     (userNumGold) + (userNumPlatinum * platinum)
 totalGold = round(totalGold)
 
-st.markdown(f'### You have {totalGold:,d} gold pieces.')
+st.subheader(f'You have {totalGold:,d} gold pieces.')
 
 
 # In[ ]:
@@ -132,7 +161,7 @@ st.write('')
 
 
 # ask how much they are trying to spend
-st.markdown('## Gold you would like to spend')
+st.header('Gold you would like to spend')
 placeholder_u = st.empty()
 userSpendGold = placeholder_u.number_input('How much gold do you want to spend? ', min_value= 0, value= 0)
 
@@ -180,29 +209,29 @@ st.write('-------------------------')
 
 
 # create columns to right align restart button
-col1, col2, col3 = st.beta_columns([1,1,.5])
-click_clear = col3.button('Start Again')
+# col1, col2, col3 = st.beta_columns([1,1,.5])
+# click_clear = col3.button('Start Again')
 
-# set fields back to 0 when clicking button
-if click_clear:
+# # set fields back to 0 when clicking button
+# if click_clear:
 
-    userNumCopper = placeholder_c.number_input('Enter number of Copper: ', 
-                                               min_value= 0, value= 0, key= 'redo')
-    userNumSilver = placeholder_s.number_input('Enter number of Silver: ', 
-                                               min_value= 0, value= 0, key= 'redo1')
-    userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', 
-                                                 min_value= 0, value= 0, key= 'redo2')
-    userNumGold = placeholder_g.number_input('Enter number of Gold: ', 
-                                             min_value= 0, value= 0, key= 'redo3')
-    userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', 
-                                                 min_value= 0, value= 0, key= 'redo4')
-    userSpendGold = placeholder_u.number_input('How much gold do you want to spend? ', 
-                                               min_value= 0, value= 0, key= 'redo5')
+#     userNumCopper = placeholder_c.number_input('Enter number of Copper: ', 
+#                                                min_value= 0, value= 0, key= 'redo')
+#     userNumSilver = placeholder_s.number_input('Enter number of Silver: ', 
+#                                                min_value= 0, value= 0, key= 'redo1')
+#     userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', 
+#                                                  min_value= 0, value= 0, key= 'redo2')
+#     userNumGold = placeholder_g.number_input('Enter number of Gold: ', 
+#                                              min_value= 0, value= 0, key= 'redo3')
+#     userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', 
+#                                                  min_value= 0, value= 0, key= 'redo4')
+#     userSpendGold = placeholder_u.number_input('How much gold do you want to spend? ', 
+#                                                min_value= 0, value= 0, key= 'redo5')
 
 
 
-    st.write('The values have been reset')
-    st.balloons()
+#     col3.write('The values have been reset')
+#     st.balloons()
 
 
 # In[ ]:
