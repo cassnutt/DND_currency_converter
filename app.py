@@ -19,7 +19,7 @@ df = pd.DataFrame()
 st.title('Dungeons & Dragons Currency Converter')
 st.write('')
 
-# st.image('images/DND.jpeg', use_column_width= True)
+st.image('images/DND.jpeg', use_column_width= True)
 
 # create columns to right align photo source text
 col1, col2, col3 = st.beta_columns([1,1,.5])
@@ -27,8 +27,8 @@ click_clear = col3.write('[Photo Source](https://www.polygon.com/deals/21294556/
 
 
 # add some space between photo and instructions
-st.markdown('#')
-st.write('Please input the number of coins you have for each coin type')
+st.write('')
+st.subheader('Please input the number of coins you have for each coin type')
 
 
 # In[13]:
@@ -77,24 +77,6 @@ placeholder_s = st.empty()
 placeholder_e = st.empty()
 placeholder_g = st.empty()
 placeholder_p = st.empty()
-
-
-# In[9]:
-
-
-# # have user input the amount they have for each coin
-# while True:
-#     try: 
-#         userNumCopper = placeholder_c.number_input('Enter number of Copper: ', min_value= 0)
-#         userNumSilver = placeholder_s.number_input('Enter number of Silver: ', min_value= 0)
-#         userNumElectrum = placeholder_e.number_input('Enter number of Electrum: ', min_value= 0)
-#         userNumGold = placeholder_g.number_input('Enter number of Gold: ', min_value= 0)
-#         userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_value= 0)
-
-#     except ValueError:
-#         continue
-    
-#     break
 
 
 # In[9]:
