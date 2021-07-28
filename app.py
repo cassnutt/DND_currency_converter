@@ -16,7 +16,7 @@ df = pd.DataFrame()
 # In[7]:
 
 
-st.title('Dungeons & Dragons Currency Converter')
+st.markdown('# Dungeons & Dragons Currency Converter')
 st.write('')
 
 st.image('images/DND.jpeg', use_column_width= True)
@@ -119,7 +119,7 @@ userNumPlatinum = placeholder_p.number_input('Enter number of Platinum: ', min_v
 totalGold = (userNumCopper * copper) + (userNumSilver * silver) + (userNumElectrum * electrum) +     (userNumGold) + (userNumPlatinum * platinum)
 totalGold = round(totalGold)
 
-st.subheader(f'You have {totalGold:,d} gold pieces.')
+st.markdown(f'### You have {totalGold:,d} gold pieces.')
 
 
 # In[ ]:
@@ -132,7 +132,7 @@ st.write('')
 
 
 # ask how much they are trying to spend
-st.header('''Gold you would like to spend''')
+st.markdown('## Gold you would like to spend')
 placeholder_u = st.empty()
 userSpendGold = placeholder_u.number_input('How much gold do you want to spend? ', min_value= 0, value= 0)
 
