@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[6]:
+# In[5]:
 
 
 import streamlit as st
@@ -9,6 +9,7 @@ import numpy as np
 import pprint
 import pandas as pd
 import time
+import plotly.graph_objects as go
 
 # empty dataframe hidden until user inputs data
 df = pd.DataFrame()
@@ -26,6 +27,11 @@ st.image('images/DND.jpeg', use_column_width= True)
 col1, col2, col3 = st.beta_columns([1,1,.5])
 click_clear = col3.write('[Photo Source](https://www.polygon.com/deals/21294556/dnd-how-to-play-dungeons-dragons-5e-guide-spells-dice-character-sheets-dm)')
 
+st.write('')
+
+
+# In[ ]:
+
 
 # add some space between photo and instructions
 st.write('')
@@ -41,6 +47,7 @@ silver = 1/10
 electrum = 1/2
 gold = 1
 platinum = 10
+
 
 def getCoins(coins, amount, coinIndex = 0):
     
@@ -118,29 +125,6 @@ st.header('Gold you would like to spend')
 placeholder_u = st.empty()
 userSpendGold = placeholder_u.number_input('How much gold do you want to spend? ', min_value= 0, value= 0)
 
-# create columns to right align wait message
-col_1, col_2, col_3 = st.beta_columns([.5,.5,1])
-col_3 = st.empty()
-
-
-# In[10]:
-
-
-# def get_results(coins, userSpendGold):
-#     # start progress bar
-# #     my_bar = st.progress(0)
-    
-# #     for percent_complete in range(100):
-# #         time.sleep(0.1)
-# #         my_bar.progress(percent_complete + 1)
-    
-#     result = getCoins(coins, userSpendGold)
-#     wait_message = col_3.text('A goblin ran off with your gold. Hold please while we get it back.')
-# #     df = pd.DataFrame(result)
-# #     # don't show index numbers?
-# #     df.index = [''] * len(df)
-#     return result
-
 
 # In[8]:
 
@@ -169,13 +153,6 @@ else:
     
     
     result = getCoins(coins, userSpendGold)
-    if result:
-        pass
-#         st.write('Hold please...')
-#         my_bar = st.progress(0)
-#         for percent_complete in range(0,100):
-#             time.sleep(0.1)
-#             my_bar.progress(percent_complete +1)
     
     df = pd.DataFrame(result)
     # don't show index numbers?
@@ -191,11 +168,9 @@ if numCoins == 0:
 elif numCoins >= 5000:
     st.write('Looks like your massive heap of coins caught the eyes of a dragon. Please be patient for your total as we distract the dragon.')
 elif numCoins >= 4000:
-    st.write('Ummm. Looks like a kobold ran off with a bag of coins.'     'Please be patient while we get it back and determine your total.')
+    st.write('Oh no. A kobold ran off with a bag of your coins. '     'Please be patient while we get it back and determine your total.')
 elif numCoins >= 3000:
-    st.write('Hey there money bags! Our abacus does not go that high! We may need a moment to figure this out.')
-elif numCoins >= 2000:
-    st.write('Whoa! That could take our goblins a while to count please be patient.')
+    st.write("Whoa! Our goblins aren't the brightest, so it may take them a while to count.")
 
 
 # In[5]:
@@ -204,9 +179,18 @@ elif numCoins >= 2000:
 # show table after data is entered
 table_placeholder = st.empty()
 
+
 if not df.empty:
-    table_placeholder.table(df)
+#     table_placeholder.table(df)
     # create plotly table without index
+    fig = go.Figure(data= [go.Table(
+        header = dict (values = list(df.columns)), 
+        cells = dict(values= [df['Coin Name'], df['Amount']]))
+        ])
+    fig.update_layout(margin = dict(l= 20, r= 20, t= 20, b= 0))
+    table_placeholder.plotly_chart(fig)
+    
+    
 
 
 # In[ ]:
@@ -242,6 +226,46 @@ if click_clear:
 
     col3.write('The values have been reset')
     st.balloons()
+
+
+# In[10]:
+
+
+### Try to get progress bar to work
+# def get_results(coins, userSpendGold):
+#     # start progress bar
+# #     my_bar = st.progress(0)
+    
+# #     for percent_complete in range(100):
+# #         time.sleep(0.1)
+# #         my_bar.progress(percent_complete + 1)
+    
+#     result = getCoins(coins, userSpendGold)
+#     wait_message = col_3.text('A goblin ran off with your gold. Hold please while we get it back.')
+# #     df = pd.DataFrame(result)
+# #     # don't show index numbers?
+# #     df.index = [''] * len(df)
+#     return result
+
+
+# In[ ]:
+
+
+# try to get radio button to work
+# radio button to select emcumberance or not
+# encumb = st.radio(
+#     'With or without encumberance?', 
+#     ('Encumbered - get rid of as many coins and weight as possible', 
+#      "UnEncumbered - weight doesn't matter and you just want the results fast"))
+
+
+# In[ ]:
+
+
+# FUTURE FEATURES
+# table as plotly table
+# "Run" button so whole page isn't run when user hits 'Enter' to get table
+# create wait message / progress bar / spinner while table is being calculated / created
 
 
 # In[ ]:
