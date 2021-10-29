@@ -181,14 +181,14 @@ table_placeholder = st.empty()
 
 
 if not df.empty:
-#     table_placeholder.table(df)
+    table_placeholder.table(df)
     # create plotly table without index
-    fig = go.Figure(data= [go.Table(
-        header = dict (values = list(df.columns)), 
-        cells = dict(values= [df['Coin Name'], df['Amount']]))
-        ])
-    fig.update_layout(margin = dict(l= 20, r= 20, t= 20, b= 0))
-    table_placeholder.plotly_chart(fig)
+#     fig = go.Figure(data= [go.Table(
+#         header = dict (values = list(df.columns)), 
+#         cells = dict(values= [df['Coin Name'], df['Amount']]))
+#         ])
+#     fig.update_layout(margin = dict(l= 20, r= 20, t= 20, b= 0))
+#     table_placeholder.plotly_chart(fig)
     
     
 
