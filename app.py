@@ -9,7 +9,7 @@ import numpy as np
 import pprint
 import pandas as pd
 import time
-import plotly.graph_objects as go
+# import plotly.graph_objects as go
 
 # empty dataframe hidden until user inputs data
 df = pd.DataFrame()
