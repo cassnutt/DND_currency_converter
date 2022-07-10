@@ -24,7 +24,7 @@ st.write('')
 st.image('images/DND.jpeg', use_column_width= True)
 
 # create columns to right align photo source text
-col1, col2, col3 = st.beta_columns([1,1,.5])
+col1, col2, col3 = st.columns([1,1,.5])
 click_clear = col3.write('[Photo Source](https://www.polygon.com/deals/21294556/dnd-how-to-play-dungeons-dragons-5e-guide-spells-dice-character-sheets-dm)')
 
 st.write('')
@@ -204,7 +204,7 @@ st.write('-------------------------')
 
 
 # create columns to right align restart button
-col1, col2, col3 = st.beta_columns([1,1,.5])
+col1, col2, col3 = st.columns([1,1,.5])
 click_clear = col3.button('Start Again')
 
 # set fields back to 0 when clicking button
